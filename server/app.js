@@ -10,6 +10,7 @@ const db = require('./configs/db.config');
 
 // routes import
 const mainRoutes = require('./routes/mainRoutes');
+const openaiRoutes = require('./routes/openai');
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use(bodyParser.json());
 
 // routes
 app.use('/main', mainRoutes(db));
+app.use('/openai', openaiRoutes());
 
 
 app.get('/', (req, res) => {
