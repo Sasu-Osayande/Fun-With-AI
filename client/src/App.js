@@ -4,8 +4,8 @@ import "./App.css";
 
 function App() {
   const [data, setData] = useState({ text: "" });
-  const [query, setQuery] = useState();
-  const [search, setSearch] = useState();
+  const [query, setQuery] = useState("");
+  const [search, setSearch] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -32,19 +32,20 @@ function App() {
 
   return (
     <div className="App">
-      <div className>
+      <div>
         <title>Fun With AI</title>
         <link rel="icon" href="/favicon.ico" />
 
-        <main className>
-          <h1 className>
+        <main>
+          <h1>
             <p>Fun With AI</p>
           </h1>
 
-          <div className>
-            <div className>
-              <h3>Enter a Prompt:</h3>
+          <div>
+            <div>
+              <h3>Enter Prompt</h3>
               <input
+              className="prompt-input"
                 type="text"
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
@@ -53,8 +54,8 @@ function App() {
                 Submit
               </button>
 
-              <h3>Response:</h3>
-              {isLoading ? <div>Loading ...</div> : <span>{data.text}</span>}
+              <h3>Responses</h3>
+              {isLoading ? <div>Loading ...</div> : <span>{data.response}</span>}
             </div>
           </div>
         </main>
