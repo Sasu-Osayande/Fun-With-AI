@@ -1,23 +1,25 @@
 import { useState, useEffect } from "react";
 // import logo from './logo.svg';
 import "./App.css";
+import { useLocalStorage } from "./useLocalStorage";
 
 function App() {
-  const [data, setData] = useState({ text: "" }, () => {
-    // getting stored value
-    const saved = localStorage.getItem("data");
-    const initialValue = JSON.parse(saved);
-    return initialValue || "";
-  });
+  const [data, setData] = useLocalStorage("data", "");
   const [query, setQuery] = useState("");
   const [search, setSearch] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [inputValue, setInputValue] = useState("");
 
   useEffect(() => {
     // storing input data
     localStorage.setItem("data", JSON.stringify(data));
   }, [data]);
+
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem('data'));
+    if (data) {
+     setData(data);
+    }
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,6 +37,7 @@ function App() {
         const data = await res.json();
         setData(data);
         console.log("Data:", data);
+        console.log("Response", data.response);
         console.log("Query:", query);
         setIsLoading(false);
       }
@@ -45,12 +48,11 @@ function App() {
 
   const onHandleSubmit = (e) => {
     e.preventDefault();
+    localStorage.setItem('data', data);
+    localStorage.setItem('query', data ? query : '');
+    localStorage.getItem(data)
     setSearch(query);
-    setQuery("");
-
-    // const query = this.state.query;
-    // this.props.onSearchTermChange(query);
-    // setSearch({query: ""});
+    // setQuery("");
   };
 
   return (
@@ -93,10 +95,9 @@ function App() {
                 ) : (
                   <div className="response-container">
                     <div className="prompt-value">
-                      <b>Prompt</b>
-                      <span>hey</span>
+                      <span><b>Prompt: </b>{query}</span>
                     </div>
-                    <span>{data.response}</span>
+                    <span><b>Response: </b>{data.response}</span>
                   </div>
                 )}
               </div>
