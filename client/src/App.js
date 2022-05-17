@@ -3,10 +3,21 @@ import { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
-  const [data, setData] = useState({ text: "" });
+  const [data, setData] = useState({ text: "" }, () => {
+    // getting stored value
+    const saved = localStorage.getItem("data");
+    const initialValue = JSON.parse(saved);
+    return initialValue || "";
+  });
   const [query, setQuery] = useState("");
   const [search, setSearch] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [inputValue, setInputValue] = useState("");
+
+  useEffect(() => {
+    // storing input data
+    localStorage.setItem("data", JSON.stringify(data));
+  }, [data]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,12 +34,24 @@ function App() {
         });
         const data = await res.json();
         setData(data);
+        console.log("Data:", data);
+        console.log("Query:", query);
         setIsLoading(false);
       }
     };
 
     fetchData();
   }, [search]);
+
+  const onHandleSubmit = (e) => {
+    e.preventDefault();
+    setSearch(query);
+    setQuery("");
+
+    // const query = this.state.query;
+    // this.props.onSearchTermChange(query);
+    // setSearch({query: ""});
+  };
 
   return (
     <div className="App">
@@ -40,22 +63,43 @@ function App() {
           <h1>
             <p>Fun With AI</p>
           </h1>
-
-          <div>
-            <div>
-              <h3>Enter Prompt</h3>
-              <input
-              className="prompt-input"
-                type="text"
-                value={query}
-                onChange={(event) => setQuery(event.target.value)}
-              />
-              <button type="button" onClick={() => setSearch(query)}>
-                Submit
-              </button>
-
-              <h3>Responses</h3>
-              {isLoading ? <div>Loading ...</div> : <span>{data.response}</span>}
+          <div className="whole-container">
+            <div className="form-container">
+              <div>
+                <div className="subheading">
+                  <h3>Enter Prompt</h3>
+                </div>
+                <form onSubmit={onHandleSubmit}>
+                  <textarea
+                    className="prompt-input"
+                    type="text"
+                    placeholder="What's on your mind?..."
+                    value={query}
+                    onChange={(event) => setQuery(event.target.value)}
+                  />
+                  <div>
+                    <div className="btn-container">
+                      <button type="button" onClick={onHandleSubmit}>
+                        Submit
+                      </button>
+                    </div>
+                  </div>
+                </form>
+                <div className="subheading">
+                  <h3>Responses</h3>
+                </div>
+                {isLoading ? (
+                  <div>Loading ...</div>
+                ) : (
+                  <div className="response-container">
+                    <div className="prompt-value">
+                      <b>Prompt</b>
+                      <span>hey</span>
+                    </div>
+                    <span>{data.response}</span>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </main>
