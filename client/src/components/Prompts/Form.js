@@ -94,7 +94,7 @@ function Form(props) {
                   <textarea
                     className="prompt-input"
                     type="text"
-                    placeholder="What's on your mind?..."
+                    placeholder="What is on your mind?..."
                     value={query}
                     onChange={(event) => setQuery(event.target.value)}
                   />
