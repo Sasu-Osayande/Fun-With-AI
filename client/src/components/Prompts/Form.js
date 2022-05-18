@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import "./Form.css";
 
@@ -8,16 +8,21 @@ function Form(props) {
   const [query, setQuery] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [value, setValue] = useState("");
+  const [input, setInput] = useState("");
   const { storage, setStorage } = props;
 
   const onHandleSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true);
+    setIsError(false);
 
     if (query === "") {
       setIsLoading(false);
       setIsError(true);
+      setTimeout(() => {
+        setIsError(false);
+      }, 4000);
+      return;
     }
 
     const data = {
@@ -39,7 +44,12 @@ function Form(props) {
       },
       body: JSON.stringify(data),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error('Prompt cannot be empty.');
+        }
+        return res.json()
+      })
       .then((data) => (answer = data.choices[0].text))
       .then(() => {
         setStorage((prev) => {
@@ -51,13 +61,16 @@ function Form(props) {
           localStorage.setItem("inputData", inputData);
           setIsLoading(false);
           setQuery("");
-          setValue("");
+          setInput("");
           return newResponse;
         });
       })
       .then(() => {
         let allStorage = JSON.parse(localStorage.getItem("inputData"));
         return allStorage;
+      })
+      .catch(err => {
+        console.error('There has been an error:', err);
       });
   };
 
@@ -82,6 +95,7 @@ function Form(props) {
                     value={query}
                     onChange={(event) => setQuery(event.target.value)}
                   />
+                  {isError ? <p>Please enter a prompt first.</p> : <span></span>}
                   <div>
                     <div className="btn-container">
                       <button type="button" onClick={onHandleSubmit}>
