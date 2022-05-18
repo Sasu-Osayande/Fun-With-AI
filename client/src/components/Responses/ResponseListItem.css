@@ -1,0 +1,17 @@
+.response-container {
+  display: flex;
+  justify-content: flex-start;
+  text-align: start;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.68);
+  border-radius: 8px;
+  padding: 30px;
+  width: 400px;
+  margin-bottom: 15px;
+}
+
+.prompt-value {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 15px;
+}
