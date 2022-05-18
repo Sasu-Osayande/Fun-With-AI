@@ -95,7 +95,7 @@ function Form(props) {
                     value={query}
                     onChange={(event) => setQuery(event.target.value)}
                   />
-                  {isError ? <p>Please enter a prompt first.</p> : <span></span>}
+                  {isError ? <div><span>Please enter a prompt first.</span></div> : <span></span>}
                   <div>
                     <div className="btn-container">
                       <button type="button" onClick={onHandleSubmit}>

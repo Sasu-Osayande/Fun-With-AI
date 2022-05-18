@@ -14,7 +14,7 @@ function App(props) {
         <link rel="icon" href="/favicon.ico" />
 
         <main>
-          <h1>
+          <h1 className="project-title">
             <p>Fun With AI</p>
           </h1>
           <div>

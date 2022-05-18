@@ -1,3 +1,25 @@
 .App {
   text-align: center;
 }
+
+.project-title {
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  color: aliceblue;
+  position: relative;
+  animation: colour-bounce 4s 1.5s ease-in-out infinite;
+}
+
+@keyframes colour-bounce {
+  0% {
+    top: 0;
+    color: rgb(235, 219, 190);
+  }
+  50% {
+    top: -6px;
+    color: rgb(202, 227, 208);
+  }
+  100% {
+    top: 0;
+    color: rgb(227, 195, 227);
+  }
+}

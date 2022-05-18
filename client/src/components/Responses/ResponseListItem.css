@@ -15,3 +15,15 @@
   justify-content: flex-start;
   margin-bottom: 15px;
 }
+
+.prompt, .response {
+  display: flex;
+}
+
+.prompt-heading {
+  padding-right: 45px;
+}
+
+.response-heading {
+  padding-right: 26px;
+}

@@ -7,15 +7,21 @@ function Responses(props) {
   return (
     <div className="response-container">
       <div className="prompt-value">
-        <span>
+        <span className="prompt-heading">
           <b>Prompt: </b>
+          </span>
+          <div className="prompt">
           {prompt}
-        </span>
+          </div>
       </div>
-      <span>
+      <div className="prompt-value">
+      <span className="response-heading">
         <b>Response: </b>
+        </span>
+        <div className="response">
         {response}
-      </span>
+        </div>
+        </div>
     </div>
   );
 }

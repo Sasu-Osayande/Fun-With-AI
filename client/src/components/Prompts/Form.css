@@ -18,15 +18,24 @@
 }
 
 button {
-  background-color: #8cc0d7;
+  background-color: #ffffff;
   border: none;
   border-radius: 8px;
-  color: white;
+  color: rgba(0, 0, 0, 0.68);
   padding: 15px 20px;
   text-align: center;
   text-decoration: none;
   font-size: 16px;
   margin-top: 20px;
+  cursor: pointer;
+}
+
+button:hover {background-color: rgba(213, 206, 216, 0.68)}
+
+button:active {
+  background-color: rgba(213, 206, 216, 0.68);
+  box-shadow: 0 5px rgb(196, 196, 196);
+  transform: translateY(4px);
 }
 
 .form-container {
@@ -39,9 +48,40 @@ button {
   padding: 30px;
   overflow: auto;
   max-height: 100vh;
+  border: 1px solid white;
+}
+
+.form-container:hover {
+  background: rgba(241, 239, 242, 0.68);
 }
 
 .whole-container {
   display: flex;
   justify-content: center;
+}
+
+textarea {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  font-size: 16px;
+  border: 1.5px solid black;
+  border-radius: 5px;
+  /* border-color: #8cc0d7; */
+  animation: 4s infinite glow;
+}
+
+@keyframes glow {
+  0% {
+    background-color: rgb(242, 229, 229);
+  }
+  25% {
+    background-color: rgb(226, 220, 235);
+  }
+  75% {
+    background-color: rgb(227, 238, 240);
+  }
+  100% {
+    background-color: rgb(237, 224, 237);
+  }
 }
