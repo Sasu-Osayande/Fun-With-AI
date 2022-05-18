@@ -71,6 +71,49 @@ textarea {
   animation: 4s infinite glow;
 }
 
+.triangle {
+  width: 0;
+  height: 0;
+  border-left: 100px solid transparent;
+  border-right: 100px solid transparent;
+  border-top: 150px solid rgb(242, 127, 127);
+  position: relative;
+  left: 190px;
+  top: 210px;
+  -webkit-filter: drop-shadow(1px 1px 1px rgba(0,0,0,.5));
+  filter: drop-shadow(5px 3px 0px rgba(0,0,0,.5));
+  border-radius: 6px 8px;
+}
+
+.triangle:hover {
+  border-top: 150px solid rgb(252, 184, 184);
+}
+
+.circle {
+  display: flex;
+  width: 200px;
+  height: 200px;
+  background: rgb(242, 127, 127);
+  border-radius: 50%;
+  position: relative;
+  right: 190px;
+  top: 185px;
+  box-shadow: 5px 7px 1px rgb(0 0 0 / 50%);
+}
+
+.circle:hover {
+  background: rgb(252, 184, 184);
+}
+
+.instructions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-weight: bolder;
+  color: rgb(242, 127, 127);
+}
+
 @keyframes glow {
   0% {
     background-color: rgb(242, 229, 229);

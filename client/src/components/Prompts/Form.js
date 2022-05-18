@@ -82,6 +82,9 @@ function Form(props) {
 
         <main>
           <div className="whole-container">
+            <div className="circle">
+              <p className="instructions">Input a question or a comment! AI will respond accordingly</p>
+            </div>
             <div className="form-container">
               <div>
                 <div className="subheading">
@@ -118,6 +121,7 @@ function Form(props) {
                 )}
               </div>
             </div>
+            <div className="triangle"></div>
           </div>
         </main>
       </div>
