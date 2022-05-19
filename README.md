@@ -1,4 +1,7 @@
 # Fun With AI
+
+**Check out the FunWithAI Website [here!](https://sasu-fun-with-ai.netlify.app)**
+
 A front-end app with a form that accepts prompts, sends it to the OPENAI API and returns human-like responses.
 
 ![FunWithAI Instructions](https://github.com/Sasu-Osayande/Fun-With-AI/blob/main/docs/FunWithAI-Instructions.png?raw=true)
